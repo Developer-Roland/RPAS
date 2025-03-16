@@ -38,8 +38,8 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 1. **To view the complete AHK control map, press ```WinKey``` + ```?``` ingame**
     * Can also be viewed at https://github.com/Developer-Roland/RPAS/blob/main/RPAS-ControlMap.png
 3. The 0-9 action shortcuts are now also mapped to the numpad number keys
-4. The ```quick menu``` is mapped to PageDn
-5. The ```equipment menu``` is mapped to PageUp
+4. The quick menu is mapped to ```PageDn```
+5. The equipment menu is mapped to ```PageUp```
 6. For rapid-fire enter, press ```Shift``` and then hold ```Enter```
 7. To launch the floor (item) reader, press ```WinKey``` + ```f```
 8. To launch another PSO window, press ```WinKey``` + ```p```
