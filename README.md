@@ -30,8 +30,9 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 	
 ## How to Use
 1. Launch ```RPAS-RolandsPsobbAhkScript.exe```
-2. Ensure your ```Numlock``` is enabled while using this AHK script!
-3. The script's keybinds only operate when a PSOBB application is focused!
+    - **This will trigger a UAC prompt, so launch RPAS prior to PSOBB.**
+3. Ensure your ```Numlock``` is enabled while using this AHK script!
+4. The script's keybinds only operate when a PSOBB application is focused!
 
 ## Controls
 1. **To view the complete AHK control map, press ```WinKey``` + ```?``` ingame**
