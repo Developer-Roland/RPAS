@@ -21,6 +21,8 @@ RPAS allows the player to effortlessly access all combat-related controls with t
     * *Multiple infographics and an iname overlay GUI created for seamless ingame help*
 5. Clipboard paste
 6. Open Source: You can view the source code on GitHub, through ResourceHacker, and in your RPAS user folder
+    * See the [View Source Code in ResourceHacker](#view-source-code-in-resourceHacker) section for instructions.
+    * The RPAS user folder can be found at ```C\Users\[UserName]\RPAS-RolandsPsobbAhkScript```
    
 ## Installation
 1. Move the ```RPAS-RolandsPsobbAhkScript.exe``` to your PSOBB folder
