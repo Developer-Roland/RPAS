@@ -24,6 +24,7 @@ RPAS allows the player to effortlessly access all combat-related controls with t
    
 ## Installation
 1. Move the ```RPAS-RolandsPsobbAhkScript.exe``` to your PSOBB folder
+	- Get this from the latest release at https://github.com/Developer-Roland/RPAS/releases
 	- The script will auto-close if opened from any other folder, so this detail is mandatory.
 	
 ## How to Use
