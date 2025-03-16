@@ -43,7 +43,7 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 7. To launch the floor (item) reader, press ```WinKey``` + ```f```
 8. To launch another PSO window, press ```WinKey``` + ```p```
 9. To paste your clipboard contents, press ```Ctrl``` + ```v```
-10. **Various commands are available by right-clicking its taskbar icon, such as launching PSO without a UAC prompt.**
+10. **Various commands are available by right-clicking its taskbar icon, such as launching PSO without a UAC prompt**
 
 ## View Source Code in ResourceHacker
 For those who want to scrutinize the exe further, its compiled code and be viewed in its RCData entries in Resource Hacker. https://www.angusj.com/resourcehacker/#download
