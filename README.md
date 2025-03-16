@@ -40,7 +40,7 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 3. The 0-9 action shortcuts are now also mapped to the numpad number keys
 4. The quick menu is mapped to ```PageDn```
 5. The equipment menu is mapped to ```PageUp```
-6. For rapid-fire enter, press ```Shift``` and then hold ```Enter```
+6. For rapid-fire enter, hold ```Shift``` and then press ```Enter```
 7. To launch the floor (item) reader, press ```WinKey``` + ```f```
 8. To launch another PSO window, press ```WinKey``` + ```p```
 9. To paste your clipboard contents, press ```Ctrl``` + ```v```
