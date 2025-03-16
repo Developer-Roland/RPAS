@@ -54,4 +54,4 @@ If you would like to contribute, here are some tasks you could perform.
 1. Share your bug findings with me, with detailed steps to reproduce each issue.
     * This helps me find and fix the issue so that the next release can resolve it. Thanks!
 2. Think of cool new (reasonable) features & improvements and share them!
-3. Like the post! We could use more thumbs up around here. Thumb those posts in the game-modifications channel. The authors like it!
+3. Like the post! We could use more thumbs up around here. Thumb those discord posts. The authors like it!
