@@ -13,11 +13,11 @@ RPAS is an AutoHotKey (AHK) script designed to improve ergonomics for KB players
 RPAS allows the player to effortlessly access all combat-related controls with their right hand, without lifting the left hand from WASD. This allows the player to retain control over movement at all times during battle. The vanilla controls, on the other hand, require finger gymnastics to do the same, with the right hand often dancing around the left hand and either hand requiring finger stretches to reach out-of-the-way keys such as the function keys. No such finger stretching or dancing is required with RPAS!
 
 ## Features
-1. Rapid-Fire Enter/Action Keys
-2. Ergonomic KB Controls
-3. UAC Mitigation
+1. Ergonomic KB Controls
+2. User Friendly with Ingame Infographics
+3. Rapid-Fire Enter/Action Keys
+4. UAC Mitigation
     * *Without globally disabling UAC prompts - for maximum security - RPAS allows you to launch PSO or the Floor Reader w/o UAC prompt(s), meaning you never need to crash PSO again (since UAC prompts crash PSO)*
-4. User Friendly with Ingame Infographics
 5. Clipboard Paste
 6. Open Source: You can view the source code on GitHub, through ResourceHacker, and in your RPAS user folder
     * *See the [View Source Code in ResourceHacker](#view-source-code-in-resourceHacker) section for instructions*
@@ -43,6 +43,7 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 7. To launch the floor (item) reader, press ```WinKey``` + ```f```
 8. To launch another PSO window, press ```WinKey``` + ```p```
 9. To paste your clipboard contents, press ```Ctrl``` + ```v```
+10. **Various commands are available by right-clicking its taskbar icon, such as launching PSO without a UAC prompt.**
 
 ## View Source Code in ResourceHacker
 For those who want to scrutinize the exe further, its compiled code and be viewed in its RCData entries in Resource Hacker. https://www.angusj.com/resourcehacker/#download
