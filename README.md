@@ -33,15 +33,15 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 3. The script's keybinds only operate when a PSOBB application is focused!
 
 ## Controls
-*A thorough control map infographic has been provided! <ins>Press ```WinKey``` + ```?``` ingame to view the control map</ins>. Therefore, only the primarily used binds will be listed here.*
-1. **To view the AHK control map, press ```WinKey``` + ```?```**
-2. The 0-9 action shortcuts are now also mapped to the numpad number keys
-3. The ```quick menu``` is mapped to PageDn
-4. The ```equipment menu``` is mapped to PageUp
-5. For rapid-fire enter, press ```Shift``` and then hold ```Enter```
-6. To launch the floor (item) reader, press ```WinKey``` + ```f```
-7. To launch another PSO window, press ```WinKey``` + ```p```
-8. To paste your clipboard contents, press ```Ctrl``` + ```v```
+1. **To view the complete AHK control map, press ```WinKey``` + ```?``` ingame**
+    * Can also be viewed at https://github.com/Developer-Roland/RPAS/blob/main/RPAS-ControlMap.png
+3. The 0-9 action shortcuts are now also mapped to the numpad number keys
+4. The ```quick menu``` is mapped to PageDn
+5. The ```equipment menu``` is mapped to PageUp
+6. For rapid-fire enter, press ```Shift``` and then hold ```Enter```
+7. To launch the floor (item) reader, press ```WinKey``` + ```f```
+8. To launch another PSO window, press ```WinKey``` + ```p```
+9. To paste your clipboard contents, press ```Ctrl``` + ```v```
 
 ## View Source Code in ResourceHacker
 For those who want to scrutinize the exe further, its compiled code and be viewed in its RCData entries in Resource Hacker. https://www.angusj.com/resourcehacker/#download
