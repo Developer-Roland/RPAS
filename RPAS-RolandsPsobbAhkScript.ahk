@@ -1,54 +1,54 @@
 ; --------------------------------------------
 ; -- Directives
 ; --------------------------------------------
-#Requires AutoHotkey v2.0			; This is an AHK v2 script
-#SingleInstance Force				; Only allow one instance of the script to run
-#Include Gdip_All+TTG_Patch.ahk		; An advanced image rendering library (the native one doesn't support alpha transparency)
+#Requires AutoHotkey v2.0				; This is an AHK v2 script
+#SingleInstance Force						; Only allow one instance of the script to run
+#Include Gdip_All+TTG_Patch.ahk	; An advanced image rendering library (the native one doesn't support alpha transparency)
 #Include PopUpWindowV4.ahk			; A library that is compatible with Gdip
-#UseHook							; Improves key state read accuracy to help mitigate rapid fire sticky keys
-KeyHistory(500)						; Increases the KeyHistory from default (40) to max (500) to help when debugging is needed
+#UseHook												; Improves key state read accuracy to help mitigate rapid fire sticky keys
+KeyHistory(500)									; Increases the KeyHistory from default (40) to max (500) to help when debugging is needed
 
 
 ; --------------------------------------------
 ; -- Config
 ; --------------------------------------------
-config						:= {}																		; The config object
-config.baseDir				:= EnvGet("UserProfile") "\RPAS-RolandsPsobbAhkScript"						; The subdirectory that houses our .ini and image files
-config.iniPath				:= config.baseDir "\config.ini"												; The location & file for the config.ini
-config.rapidFire			:= {}																		; The rapidFire config object
+config										:= {}																																				; The config object
+config.baseDir						:= EnvGet("UserProfile") "\RPAS-RolandsPsobbAhkScript"											; The subdirectory that houses our .ini and image files
+config.iniPath						:= config.baseDir "\config.ini"																							; The location & file for the config.ini
+config.rapidFire					:= {}																																				; The rapidFire config object
 config.rapidFire.enabled	:= IniRead(config.iniPath, "config", "rapidFireEnabled", "true") == "true"	; Are the rapid-fire actions enabled?
-config.rapidFire.delay		:= Integer(IniRead(config.iniPath, "config", "rapidFireDelay", "200"))		; What's the rapid-fire delay?
-config.typedShortcuts		:= IniRead(config.iniPath, "config", "typedShortcuts", "true") == "true"	; Whether or not the bank/lobby shortcuts are typed or Shift+[Fn Key]
-config.images				:= {}																		; The images object
-config.images.splash		:= config.baseDir "\RPAS-Splash.png"										; The splash screen
-config.images.uiBg41		:= config.baseDir "\RPAS-UiBackground4to1.png"								; The 4:1 UI message background
-config.images.commands		:= config.baseDir "\RPAS-Commands.png"										; The server commands infographic
-config.images.controlMap	:= config.baseDir "\RPAS-ControlMap.png"									; The controls map infographic
-config.images.sectionIds	:= config.baseDir "\RPAS-SectionIds.png"									; The section IDs infographic
-config.scriptPath			:= config.baseDir "\RPAS-RolandsPsobbAhkScript.ahk"							; The source code, for end user inspection
-config.targetWindowTitle	:= "PHANTASY STAR ONLINE Blue Burst"										; The title of the application window
-config.testing				:= false																	; Allows the program to launch anywhere and makes all keybinds global (this would be bad UX for end users)
+config.rapidFire.delay		:= Integer(IniRead(config.iniPath, "config", "rapidFireDelay", "200"))			; What's the rapid-fire delay?
+config.typedShortcuts			:= IniRead(config.iniPath, "config", "typedShortcuts", "true") == "true"		; Whether or not the bank/lobby shortcuts are typed or Shift+[Fn Key]
+config.images							:= {}																																				; The images object
+config.images.splash			:= config.baseDir "\RPAS-Splash.png"																				; The splash screen
+config.images.uiBg41			:= config.baseDir "\RPAS-UiBackground4to1.png"															; The 4:1 UI message background
+config.images.commands		:= config.baseDir "\RPAS-Commands.png"																			; The server commands infographic
+config.images.controlMap	:= config.baseDir "\RPAS-ControlMap.png"																		; The controls map infographic
+config.images.sectionIds	:= config.baseDir "\RPAS-SectionIds.png"																		; The section IDs infographic
+config.scriptPath					:= config.baseDir "\RPAS-RolandsPsobbAhkScript.ahk"													; The source code, for end user inspection
+config.targetWindowTitle	:= "PHANTASY STAR ONLINE Blue Burst"																				; The title of the application window
+config.testing						:= false																																		; Allows the program to launch anywhere and makes all keybinds global (this would be bad UX for end users)
 
 
 ; --------------------------------------------
 ; -- File Installs
 ; --------------------------------------------
 DirCreate  config.baseDir
-FileInstall "RPAS-Splash.png",					config.images.splash,		1
-FileInstall "RPAS-UiBackground41.png",			config.images.uiBg41,		1
-FileInstall "RPAS-Commands.png",				config.images.commands,		1
-FileInstall "RPAS-ControlMap.png",		 		config.images.controlMap,	1
-FileInstall "RPAS-SectionIds.png",			 	config.images.sectionIds,	1
-FileInstall "RPAS-RolandsPsobbAhkScript.ahk",	config.scriptPath,			1
+FileInstall "RPAS-Splash.png",								config.images.splash,			1
+FileInstall "RPAS-UiBackground41.png",				config.images.uiBg41,			1
+FileInstall "RPAS-Commands.png",							config.images.commands,		1
+FileInstall "RPAS-ControlMap.png",		 				config.images.controlMap,	1
+FileInstall "RPAS-SectionIds.png",					 	config.images.sectionIds,	1
+FileInstall "RPAS-RolandsPsobbAhkScript.ahk",	config.scriptPath,				1
 
 
 ; --------------------------------------------
 ; -- Events & Misc Inits
 ; --------------------------------------------	
-ElevateIfNeeded()																; Elevate the AHK script to admin if it's not already elevated (shows UAC, so launch AHK before PSO)
-ShowSplashScreen()																; Show the splash screen on load
-AddTaskBarMenuCommands()														; Workaround for captured WinKey+P outside of game focus. Use this when outside the game.
-AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboards & such
+ElevateIfNeeded()																							; Elevate the AHK script to admin if it's not already elevated (shows UAC, so launch AHK before PSO)
+AddTaskBarMenuCommands()																			; Workaround for captured WinKey+P outside of game focus. Use this when outside the game.
+AddSupplementalBinds()																				; Adds supplemental binds for QUERTZ keyboards & such
+ShowSplashScreen()																						; Show the splash screen on load
 
 
 ; --------------------------------------------
@@ -60,7 +60,7 @@ AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboa
 ; --------------------------------------------
 ; -- Target Application Binds
 ; --------------------------------------------
-#HotIf WinActive(config.targetWindowTitle) || config.testing 					; SCOPES BINDS TO APP
+#HotIf WinActive(config.targetWindowTitle) || config.testing 	; SCOPES BINDS TO APP
 
 	; --------------------
 	; --- ACTION KEY BINDS
@@ -75,7 +75,7 @@ AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboa
 	Numpad7::RapidFire("7")
 	Numpad8::RapidFire("8")
 	Numpad9::RapidFire("9")
-	;NumpadIns::RapidFire("0") ;numpad disabled binds
+	;NumpadIns::RapidFire("0") ;numpad disabled binds (retired since they can cause infinite loops if shift gets stuck on rapidfire enter)
 	;NumpadEnd::RapidFire("1")
 	;NumpadDown::RapidFire("2")
 	;NumpadPgDn::RapidFire("3")
@@ -85,7 +85,7 @@ AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboa
 	;NumpadHome::RapidFire("7")
 	;NumpadUp::RapidFire("8")
 	;NumpadDot::RapidFire("9")
-	;$0::RapidFire("0", "0") ;these interfere with typing ingame, bigtime. plus, the numpad is far better ergonomically.
+	;$0::RapidFire("0", "0") ;number binds (these interfere bigtime with typing numbers in ingame chat. plus, the numpad is far better ergonomically.)
 	;$1::RapidFire("1", "1")
 	;$2::RapidFire("2", "2")
 	;$3::RapidFire("3", "3")
@@ -100,46 +100,45 @@ AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboa
 	; --------------------
 	; -- CHAT SHORTCUTS
 	;---------------------
-	#`::DoShortcut("lobby")														; /LOBBY SHORTCUT
-	#b::DoShortcut("bank")														; /BANK SHORTCUT
-	#m::ChangeShortcutMode()													; CHANGES SHORTCUTS FROM TYPED TO SHIFT+[FN]
+	#`::DoShortcut("lobby")																						; /LOBBY SHORTCUT
+	#b::DoShortcut("bank")																						; /BANK SHORTCUT
+	#m::ChangeShortcutMode()																					; CHANGES SHORTCUTS FROM TYPED TO SHIFT+[FN]
 	
 	
 	; --------------------
 	; --- MISC BINDS
 	;---------------------
-	$PgUp::F2																	; REMAP EQUIP TO PAGE UP	(breaks PgUp)
-	$PgDn::SendPlus("{Ctrl Down}{End}{Ctrl Up}", 50, 50)						; REMAP Q-MENU TO PAGE DOWN (breaks PgDn)
-	#PgUp::SendPlus("{PgUp}", 50, 50)											; REMAP SCROLL UP   TO Win+PGUP	(restores PgUp)
-	#PgDn::SendPlus("{PgDn}", 50, 50)											; REMAP SCROLL DOWN TO Win+PGDN (restores PgDn)
-	F11::F12																	; DISABLE F11's "ALWAYS CHAT MODE"
-	NumpadDiv::F3																; TECHNIQUE WINDOW
-	NumpadMult::F4																; MAG WINDOW
-	NumpadSub::F6																; SIMPLE MAIL
-	NumpadAdd::F5																; GUILD CARDS
+	$PgUp::F2																													; REMAP EQUIP TO PAGE UP	(breaks PgUp)
+	$PgDn::SendPlus("{Ctrl Down}{End}{Ctrl Up}", 50, 50)							; REMAP Q-MENU TO PAGE DOWN (breaks PgDn)
+	#PgUp::SendPlus("{PgUp}", 50, 50)																	; REMAP SCROLL UP   TO Win+PGUP	(restores PgUp)
+	#PgDn::SendPlus("{PgDn}", 50, 50)																	; REMAP SCROLL DOWN TO Win+PGDN (restores PgDn)
+	F11::F12																													; DISABLE F11's "ALWAYS CHAT MODE" (since it disables keyboard controls!!!)
+	NumpadDiv::F3																											; TECHNIQUE WINDOW
+	NumpadMult::F4																										; MAG WINDOW
+	NumpadSub::F6																											; SIMPLE MAIL
+	NumpadAdd::F5																											; GUILD CARDS
 
 
 	; --------------------
 	; -- UTILITY BINDS
 	;---------------------
-	^v::SendPlus(A_Clipboard, 35, 35, {raw: 1})									; CLIPBOARD PASTE POLYFILL (Partial Credit: Orgodemirk)
-	$+Enter::RapidFireOneMod("Enter", "Enter", "Shift", 30, 30, true)			; RAPID-FIRE ENTER (click shift again if hotkeys stop working. if it fixes it for you, shift was stuck)
-	;Shift Up::SendPlus("{Shift Up}", 50, 50)
-	Numlock::return																; DISABLE NUMLOCK (to toggle, hold alt & hit numlock twice (idk why lol))
-	#Numpad2::RapidFireDelayToggle(false)										; RAPID-FIRE DELAY DECREMENT BIND
-	#Numpad8::RapidFireDelayToggle(true)										; RAPID-FIRE DELAY INCREMENT BIND
-	#f::LaunchDestinyFloorReader()												; LAUNCH FLOOR READER (as admin)
-	#p::LaunchPsoLauncher()														; LAUNCH PSO LAUNCHER (as admin) (sadly, windows interfered with this being a global bind. so I moved it here & added the tray menu option)
-	#0::SendPlus("{space}/sectionid 0{enter}", 50, 50)							; Viridia hotkey
-	#1::SendPlus("{space}/sectionid 1{enter}", 50, 50)							; Greenill hotkey
-	#2::SendPlus("{space}/sectionid 2{enter}", 50, 50)							; Skyly hotkey
-	#3::SendPlus("{space}/sectionid 3{enter}", 50, 50)							; Bluefull hotkey
-	#4::SendPlus("{space}/sectionid 4{enter}", 50, 50)							; Purplenum hotkey
-	#5::SendPlus("{space}/sectionid 5{enter}", 50, 50)							; Pinkal hotkey
-	#6::SendPlus("{space}/sectionid 6{enter}", 50, 50)							; Redria hotkey
-	#7::SendPlus("{space}/sectionid 7{enter}", 50, 50)							; Oran hotkey
-	#8::SendPlus("{space}/sectionid 8{enter}", 50, 50)							; Yellowboze hotkey
-	#9::SendPlus("{space}/sectionid 9{enter}", 50, 50)							; Whitill hotkey
+	^v::SendPlus(A_Clipboard, 35, 35, {raw: 1, blind: 0})							; CLIPBOARD PASTE POLYFILL (Partial Credit: Orgodemirk)
+	$+Enter::RapidFireOneMod("Enter", "Enter", "Shift", 30, 30, true)	; RAPID-FIRE ENTER (click shift again if hotkeys stop working. if it fixes it for you, shift was stuck)
+	Numlock::return																										; DISABLE NUMLOCK (to toggle, hold alt & hit numlock twice (idk why lol))
+	#Numpad2::RapidFireDelayToggle(false)															; RAPID-FIRE DELAY DECREMENT BIND
+	#Numpad8::RapidFireDelayToggle(true)															; RAPID-FIRE DELAY INCREMENT BIND
+	#f::LaunchDestinyFloorReader()																		; LAUNCH FLOOR READER (as admin)
+	#p::LaunchPsoLauncher()																						; LAUNCH PSO LAUNCHER (as admin) (sadly, windows interfered with this being a global bind. so I moved it here & added the tray menu option)
+	#0::SendPlus("{space}/sectionid 0{enter}", 50, 50)								; Viridia hotkey
+	#1::SendPlus("{space}/sectionid 1{enter}", 50, 50)								; Greenill hotkey
+	#2::SendPlus("{space}/sectionid 2{enter}", 50, 50)								; Skyly hotkey
+	#3::SendPlus("{space}/sectionid 3{enter}", 50, 50)								; Bluefull hotkey
+	#4::SendPlus("{space}/sectionid 4{enter}", 50, 50)								; Purplenum hotkey
+	#5::SendPlus("{space}/sectionid 5{enter}", 50, 50)								; Pinkal hotkey
+	#6::SendPlus("{space}/sectionid 6{enter}", 50, 50)								; Redria hotkey
+	#7::SendPlus("{space}/sectionid 7{enter}", 50, 50)								; Oran hotkey
+	#8::SendPlus("{space}/sectionid 8{enter}", 50, 50)								; Yellowboze hotkey
+	#9::SendPlus("{space}/sectionid 9{enter}", 50, 50)								; Whitill hotkey
 
 
 	; --------------------
@@ -153,9 +152,9 @@ AddSupplementalBinds()															; Adds supplemental binds for QUERTZ keyboa
 	; --------------------
 	; -- DEBUGGING BINDS
 	;---------------------
-	^!+w::ShowWindowTitle()														; DEBUGGING TOOL
-	^!+m::ShowHoveredWindowTitle()												; DEBUGGING TOOL
-	^!+Insert::KeyHistory														; DEBUGGING TOOL
+	^!+w::ShowWindowTitle()
+	^!+m::ShowHoveredWindowTitle()
+	^!+Insert::KeyHistory
 
 	
 ; --------------------------------------------
@@ -169,13 +168,13 @@ ElevateIfNeeded(){
 		Sleep 5000
 		ExitApp
 	}
-	if not A_IsAdmin																							; Confirm admin privileges
-		try {																									; Since this will throw an error if they refuse the UAC prompt
-			Run "*RunAs " A_ScriptFullPath																		; Will show UAC (Use a task scheduler shortcut to skip this Run command)
+	if not A_IsAdmin													; Confirm admin privileges
+		try {																		; Since this will throw an error if they refuse the UAC prompt
+			Run "*RunAs " A_ScriptFullPath				; Will show UAC (Use a task scheduler shortcut to skip this Run command)
 		} catch {
 			ShowUiMessage("Elevated privileges refused, closing script...", 3000, {wP:0.5, center: true, vCenter: true, monitorFocus: true, fsP: 0.2})
 			Sleep 3000
-			ExitApp																								; Exit the app if they refuse to elevate
+			ExitApp																; Exit the app if they refuse to elevate
 		}
 	return
 }
@@ -188,18 +187,18 @@ ShowUiMessage(msg, dur, options:={wP:0.2, marginP: 0.01}) => AddUiImage( "uiMess
 ; Functions		AddUiImage
 ; Description	Adds a GUI image
 ;
-; type			The type of the image. Only of image for each type are allowed onscreen at a time.
+; type				The type of the image. Only of image for each type are allowed onscreen at a time.
 ; imagePath		The filepath for the image.
 ; duration		How many ms to display the image for
-; options		Options for the image
-;					wP hP			: required	: widthPercent / heightPercent
-;					alpha			: optional	: will set the alpha transparency. if omitted, the default will be set
-;					toggle			: optional	: will toggle off the existing same-hwnd image, if there is one, and exit
+; options			Options for the image
+;					wP hP					: required	: widthPercent / heightPercent
+;					alpha					: optional	: will set the alpha transparency. if omitted, the default will be set
+;					toggle				: optional	: will toggle off the existing same-hwnd image, if there is one, and exit
 ;					monitorFocus	: optional 	: will focus the image on the monitor instead of the active window
-;					fsP				: optional	: fontSize
-;					marginP			: optional	: marginPercent, will add this % of the width to the L/B margins
-;					center			: optional	: will center the image horizontally in the active window
-;					vCenter			: optional	: will center the image vertically in the active window
+;					fsP						: optional	: fontSize
+;					marginP				: optional	: marginPercent, will add this % of the width to the L/B margins
+;					center				: optional	: will center the image horizontally in the active window
+;					vCenter				: optional	: will center the image vertically in the active window
 ; caption		The text to show atop the image
 ;
 ; ########################################################################################################################
@@ -234,19 +233,19 @@ AddUiImage(type:="N/A", imagePath:="", duration:=3000, options:={}, caption:=fal
 	
 	;<<< PREPARE IMAGE >>>
 	ImgObjs.%type%		:= {}
-	ImgObj				:= ImgObjs.%type%
+	ImgObj					:= ImgObjs.%type%
 	ImgObj.pToken		:= Gdip_Startup()
 	ImgObj.bitmap		:= Gdip_CreateBitmapFromFile( imagePath )
-	origWidth			:= Gdip_GetImageWidth(ImgObj.bitmap)
+	origWidth				:= Gdip_GetImageWidth(ImgObj.bitmap)
 	origHeight			:= Gdip_GetImageHeight(ImgObj.bitmap)
 	ImgObj.width		:= options.HasProp("wP") ? W * options.wP : (H * options.hP) * (origWidth / origHeight)
 	ImgObj.height		:= options.HasProp("hP") ? H * options.hP : (W * options.wP) * (origHeight / origWidth)
-	margin				:= options.HasProp("marginP") ? {x: W * options.marginP, y: W * options.marginP} : {x: 0, y: 0}
-	margin.x			:= options.HasProp("center") ? (W / 2) - (ImgObj.width / 2) : margin.x
-	margin.y			:= options.HasProp("vCenter") ? (H / 2) - (ImgObj.height / 2) : margin.y
+	margin					:= options.HasProp("marginP") ? {x: W * options.marginP, y: W * options.marginP} : {x: 0, y: 0}
+	margin.x				:= options.HasProp("center") ? (W / 2) - (ImgObj.width / 2) : margin.x
+	margin.y				:= options.HasProp("vCenter") ? (H / 2) - (ImgObj.height / 2) : margin.y
 	
 	;<<< PREPARE POPUP >>>
-	popupConfig			:= {}
+	popupConfig := {}
 	if( options.HasProp("monitorFocus") )
 		popupConfig.Options	:= "+AlwaysOnTop +ToolWindow"
 	else
@@ -272,10 +271,10 @@ AddUiImage(type:="N/A", imagePath:="", duration:=3000, options:={}, caption:=fal
 	ImgObj.Gui.Update( options.HasProp("alpha") ? options.alpha : 100 )
 	ImgObj.Gui.Show(,true,10,15) ;Show the window without activating it.
 	SetTimer( DestroyImage.Bind( type, hwnd, token ) , -Abs( duration ) )
-	ImgObj.hwnd		:= hwnd
-	ImgObj.token	:= token
+	ImgObj.hwnd			:= hwnd
+	ImgObj.token		:= token
 	ImgObj.options	:= options
-	Busy			:= 0
+	Busy						:= 0
 
 	DestroyImage( wasType, wasHwnd, wasToken:=0 ){
 		destroyData := {}
@@ -299,7 +298,7 @@ AddUiImage(type:="N/A", imagePath:="", duration:=3000, options:={}, caption:=fal
 			ImgObj.Gui.Hide()
 		else
 			ImgObj.Gui.Hide( , 10, duration / 10 )
-		;Sleep duration 'redundant? ImgObj.Gui.Hide (from PopUpWindowV4) does Sleeps...
+		;Sleep duration ;redundant? ImgObj.Gui.Hide (from PopUpWindowV4) does Sleeps...
 	}
 }
 RapidFireDelayToggle(Increasing, Increment:=10) {
@@ -378,7 +377,7 @@ SendPlus(input, delay:="", duration:="", options:={}){
 	options := ExtendObject( {raw: 0, blind: 1}, options )
 	if (delay != "" || duration != "")
 		SetKeyDelay (delay == "" ? 50 : delay), (duration == "" ? 50 : duration)
-	return SendEvent( ( options.raw ? "{RAW}" : "" ) ( options.blind ? "{BLIND}" : "" ) input )
+	return SendEvent( ( options.blind ? "{BLIND}" : "" ) ( options.raw ? "{RAW}" : "" ) input )
 }
 LaunchPsoLauncher(*){ ; (No UAC prompt, since RPAS is in admin)
 	If ( FileExist("launcher.exe") ) {
@@ -441,17 +440,17 @@ ShowControlMap(isMenuCommand:=false,*){ ; (shared between keybind and taskbard i
 	AddUiImage("info", config.images.controlMap, 60000, options)
 }
 AddTaskBarMenuCommands(){
-	A_TrayMenu.Insert( "1&", "Launch PSO",				LaunchPsoLauncher )
-	A_TrayMenu.Insert( "2&", "Launch Floor Reader",		LaunchDestinyFloorReader )
-	A_TrayMenu.Insert( "3&", "Show/Hide Control Map",	ShowControlMap.Bind(true) )
-	A_TrayMenu.Insert( "4&", "Open Screenshots Folder",	(*) => Run( "explorer.exe " A_ScriptDir "\bmp\" ) )
-	A_TrayMenu.Insert( "5&", "Open PSO Folder",			(*) => Run( "explorer.exe " A_ScriptDir "\" ) )
+	A_TrayMenu.Insert( "1&", "Launch PSO",							LaunchPsoLauncher																	)
+	A_TrayMenu.Insert( "2&", "Launch Floor Reader",			LaunchDestinyFloorReader													)
+	A_TrayMenu.Insert( "3&", "Show/Hide Control Map",		ShowControlMap.Bind(true)													)
+	A_TrayMenu.Insert( "4&", "Open Screenshots Folder",	(*) => Run( "explorer.exe " A_ScriptDir "\bmp\" )	)
+	A_TrayMenu.Insert( "5&", "Open PSO Folder",					(*) => Run( "explorer.exe " A_ScriptDir "\" )			)
 }
 AddSupplementalBinds(){
 	;<<< QUERTZ LAYOUTS >>>
 	HotIfWinActive config.targetWindowTitle		; scopes the binds to the target window
 	HotKey( "#^", DoShortcut.Bind("lobby") )	; the equivalent of their ` key
-	if( GetKeyVK( "ß" ) )						; the equivalent of their ? key
+	if( GetKeyVK( "ß" ) )											; the equivalent of their ? key
 		HotKey( "#ß", ShowControlMap )
 }
 ShowWindowTitle(){
@@ -479,13 +478,13 @@ StringifyObject(Obj, Depth:=5, IndentLevel:="") {
 	}
 	return RTrim(ObjStr)
 }
-ExtendObject(ParentObj, HeirObj) {
-	ParentObj	:= Type(ParentObj)	== "Object" ? DeepClone(ParentObj)	: {}
-	HeirObj		:= Type(HeirObj)	== "Object" ? DeepClone(HeirObj)	: {}
-	for k, v in HeirObj.OwnProps() {
-		ParentObj.%k% := v
+ExtendObject(TemplateObj, UniqueObject) { ;ex: ExtendObject( {raw: 0, blind: 1}, options )
+	TemplateObj		:= Type(TemplateObj)	== "Object" ? DeepClone(TemplateObj)	: {}
+	UniqueObject	:= Type(UniqueObject)	== "Object" ? DeepClone(UniqueObject)	: {}
+	for k, v in UniqueObject.OwnProps() {
+		TemplateObj.%k% := v
 	}
-	return ParentObj
+	return TemplateObj
 }
 DeepClone(Obj) {
 	CloneObj := {}
