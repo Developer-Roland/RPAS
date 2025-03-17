@@ -1,12 +1,12 @@
 ; --------------------------------------------
 ; -- Directives
 ; --------------------------------------------
-#Requires AutoHotkey v2.0	; This is an AHK v2 script
-#SingleInstance Force		; Only allow one instance of the script to run
-#Include Gdip_All+TTG_Patch.ahk	; An advanced image rendering library (the native one doesn't support alpha transparency)
-#Include PopUpWindowV4.ahk	; A library that is compatible with Gdip
-#UseHook			; Improves key state read accuracy to help mitigate rapid fire sticky keys
-KeyHistory(500)			; Increases the KeyHistory from default (40) to max (500) to help when debugging is needed
+#Requires AutoHotkey v2.0       ; This is an AHK v2 script
+#SingleInstance Force           ; Only allow one instance of the script to run
+#Include Gdip_All+TTG_Patch.ahk ; An advanced image rendering library (the native one doesn't support alpha transparency)
+#Include PopUpWindowV4.ahk      ; A library that is compatible with Gdip
+#UseHook                        ; Improves key state read accuracy to help mitigate rapid fire sticky keys
+KeyHistory(500)                 ; Increases the KeyHistory from default (40) to max (500) to help when debugging is needed
 
 
 ; --------------------------------------------
