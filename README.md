@@ -35,7 +35,7 @@ RPAS allows the player to effortlessly access all combat-related controls with t
 4. The script's keybinds only operate when a PSOBB application is focused!
 
 ## Controls
-1. **To view the complete AHK control map, press ```WinKey``` + ```?``` ingame**
+1. **This list is incomplete. To view the complete AHK control map, press ```WinKey``` + ```?``` ingame**
     * Can also be viewed at https://github.com/Developer-Roland/RPAS/blob/main/RPAS-ControlMap.png
 3. The 0-9 action shortcuts are now also mapped to the numpad number keys
 4. The quick menu is mapped to ```PageDn```
